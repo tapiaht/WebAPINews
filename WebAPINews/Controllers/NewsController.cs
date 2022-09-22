@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace WebAPINews.Controllers
 {
-    [Route("api/[controller]")]
+   [Route("api/[controller]")]
     [ApiController]
     public class NewsController : ControllerBase
     {
@@ -33,6 +33,7 @@ namespace WebAPINews.Controllers
             return Ok(oRespuesta);
         }
         [HttpGet("{IdNews}")]
+        //[Route("/")]
         public IActionResult Get(int IdNews)
         {
             Respuesta<News> oRespuesta = new Respuesta<News>();
@@ -64,6 +65,7 @@ namespace WebAPINews.Controllers
                     News oNews = new News();
                     oNews.Titulo = model.Titulo;
                     oNews.IdCat = model.IdCat;
+                    oNews.Body=model.Body;
                     db.News.Add(oNews);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -87,6 +89,7 @@ namespace WebAPINews.Controllers
                     News oNews = db.News.Find(model.IdNews);
                     oNews.Titulo = model.Titulo;
                     oNews.IdCat = model.IdCat;
+                    oNews.Body = model.Body;
                     db.Entry(oNews).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;

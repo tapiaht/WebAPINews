@@ -22,5 +22,6 @@ namespace WebAPINews
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }
