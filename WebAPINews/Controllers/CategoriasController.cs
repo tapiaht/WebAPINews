@@ -65,6 +65,7 @@ namespace WebAPINews.Controllers
                 {
                     Categoria oCategoria = new Categoria();
                     oCategoria.Nombre = model.Nombre;
+                    oCategoria.Foto= model.Foto;
 
                     db.Categorias.Add(oCategoria);
                     db.SaveChanges();
@@ -88,6 +89,7 @@ namespace WebAPINews.Controllers
                 {
                     Categoria oCategoria = db.Categorias.Find(model.Idcat);
                     oCategoria.Nombre = model.Nombre;
+                    oCategoria.Nombre = model.Foto;
 
                     db.Entry(oCategoria).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();

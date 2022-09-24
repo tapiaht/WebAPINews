@@ -12,5 +12,8 @@ namespace WebAPINews.Modelos
         public int? IdCat { get; set; }
         public string Body { get; set; }
         public virtual Categoria IdCatNavigation { get; set; }
+        //public Categoria Cate { get; set; }
+        
+
     }
 }

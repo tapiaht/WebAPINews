@@ -23,6 +23,7 @@ namespace WebAPINews.Modelos
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Modulo> Modulos { get; set; }
         public virtual DbSet<News> News { get; set; }
+        
         public virtual DbSet<Operacione> Operaciones { get; set; }
         public virtual DbSet<RolOperacion> RolOperacions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -60,6 +61,9 @@ namespace WebAPINews.Modelos
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsFixedLength(true);
+                entity.Property(e => e.Foto)
+                    .HasMaxLength(150)
+                    .IsFixedLength(true);
             });
 
             modelBuilder.Entity<Modulo>(entity =>
@@ -81,6 +85,14 @@ namespace WebAPINews.Modelos
                     .WithMany(p => p.News)
                     .HasForeignKey(d => d.IdCat)
                     .HasConstraintName("FK_News_Categoria");
+
+                //entity.HasOne(d => d.IdCatNavigation)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.Cate);
+
+                entity.Property(e => e.Body)
+                    .HasMaxLength(150)
+                    .IsFixedLength(true);
             });
 
             modelBuilder.Entity<Operacione>(entity =>

@@ -6,6 +6,9 @@ using System.Linq;
 using System;
 using WebAPINews.Modelos.Request;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace WebAPINews.Controllers
 {
@@ -13,6 +16,7 @@ namespace WebAPINews.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
+        //[HttpGet]
         public IActionResult Get()
         {
             Respuesta<List<News>> oRespuesta = new Respuesta<List<News>>();
@@ -32,6 +36,8 @@ namespace WebAPINews.Controllers
             }
             return Ok(oRespuesta);
         }
+
+       
         [HttpGet("{IdNews}")]
         //[Route("/")]
         public IActionResult Get(int IdNews)
@@ -54,6 +60,7 @@ namespace WebAPINews.Controllers
             }
             return Ok(oRespuesta);
         }
+       
         [HttpPost]
         public IActionResult Add(Pedir model)
         {
@@ -122,6 +129,34 @@ namespace WebAPINews.Controllers
 
             }
             return Ok(oRespuesta);
+        }
+
+        private static readonly Expression<Func<News, NewsDto>> AsNewsDto =
+            x => new NewsDto
+            {
+                Titulo = x.Titulo,
+                //Nombre= x.Cate.Nombre
+                //Nombre = x.Categoria.Name,
+
+            };
+        [HttpGet("~/api/categorias/{Idcat}/news")]
+        //[Route("~/api/categorias/{Idcat}/news")]
+        //public IQueryable<News> GetNewsByCate(int Idcat)
+        public IActionResult GetNewsByCate(int Idcat)
+        {
+            
+            Respuesta<List<News>> oRespuesta = new Respuesta<List<News>>();
+            using (NotiBlazorContext db = new NotiBlazorContext())
+            {
+                var lst = db.News.ToList();
+                var query = (from noti in lst
+                            where noti.IdCat==Idcat
+                            select noti).ToList();
+                            oRespuesta.Exito = 1;
+                oRespuesta.Data = query;
+                return Ok(oRespuesta);
+
+            }
         }
     }
 }
