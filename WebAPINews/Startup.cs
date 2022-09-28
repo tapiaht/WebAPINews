@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols;
 using WebAPINews.Modelos;
 
 namespace WebAPINews
@@ -25,8 +26,9 @@ namespace WebAPINews
         }
 
         public IConfiguration Configuration { get; }
-
+        //string connString = configuration.GetConnectionString("DefaultConnection");
         // This method gets called by the runtime. Use this method to add services to the container.
+       // var temp = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -44,6 +46,9 @@ namespace WebAPINews
 
             services.AddControllers();
             services.AddSwaggerGen();
+            //services.AddSingleton<IConfiguration>(Configuration);
+        //    services.AddDbContext<NotiBlazorContext>(options =>
+        //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
