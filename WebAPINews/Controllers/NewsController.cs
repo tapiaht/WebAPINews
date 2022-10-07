@@ -131,14 +131,7 @@ namespace WebAPINews.Controllers
             return Ok(oRespuesta);
         }
 
-        private static readonly Expression<Func<News, NewsDto>> AsNewsDto =
-            x => new NewsDto
-            {
-                Titulo = x.Titulo,
-                //Nombre= x.Cate.Nombre
-                //Nombre = x.Categoria.Name,
-
-            };
+       
         [HttpGet("~/api/categorias/{Idcat}/news")]
         //[Route("~/api/categorias/{Idcat}/news")]
         //public IQueryable<News> GetNewsByCate(int Idcat)

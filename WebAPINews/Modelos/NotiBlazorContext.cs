@@ -11,14 +11,20 @@ namespace WebAPINews.Modelos
 {
     public partial class NotiBlazorContext : DbContext
     {
+        //private readonly IConfiguration configuration;
+        //public NotiBlazorContext(IConfiguration config)
+        //{
+        //    configuration = config;
+        //}
         public NotiBlazorContext()
+        { }
+        //public NotiBlazorContext(DbContextOptions<NotiBlazorContext> options): base(options)
+        //{
+        //}
+        public NotiBlazorContext(DbContextOptions<NotiBlazorContext> options) : base(options)
         {
         }
-
-        public NotiBlazorContext(DbContextOptions<NotiBlazorContext> options)
-            : base(options)
-        {
-        }
+        //DbContextOptions<NotiBlazorContext>
 
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Modulo> Modulos { get; set; }
@@ -30,24 +36,31 @@ namespace WebAPINews.Modelos
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
 
-        private readonly IConfiguration configuration;
-        public NotiBlazorContext(IConfiguration config)
-        {
-            configuration = config;
-        }
+        //private readonly IConfiguration configuration;
+        //public NotiBlazorContext(IConfiguration config)
+        //{
+        //    configuration = config;
+        //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-        
-            
+
+
+
             if (!optionsBuilder.IsConfigured)
             {
 
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 //optionsBuilder.UseSqlServer("myrealconnectionstring");
                 //optionsBuilder.UseSqlServer()
                 //;
+                //optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=NotiBlazor; Trusted_Connection=True;");
+
                 optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=NotiBlazor; Trusted_Connection=True;");
+
+                //optionsBuilder.UseMySQL("server=localhost;database=notiblazor;user=root;password=toor");
+
+                //optionsBuilder.UseNpgsql(@"Host=localhost;Database=NotiBlazor;Username=postgres;Password=postgres");
+
                 //optionsBuilder.UseSqlServer("Server=tcp:webapinewsdbserver.database.windows.net,1433;Initial Catalog=NotiBlazor;Persist Security Info=False;User ID=htd7;Password=Esf@cilit0;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
 

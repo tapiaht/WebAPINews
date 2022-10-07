@@ -6,6 +6,7 @@ using WebAPINews.Modelos.Request;
 using WebAPINews.Modelos.Response;
 using WebAPINews.Modelos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace WebAPINews.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebAPINews.Controllers
             Respuesta<List<Categoria>> oRespuesta = new Respuesta<List<Categoria>>();
             try
             {
+               
                 using (NotiBlazorContext db = new NotiBlazorContext())
                 {
                     var lst = db.Categorias.ToListAsync();
